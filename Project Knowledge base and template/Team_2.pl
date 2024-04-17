@@ -23,3 +23,10 @@ earliest_slot(Group, Week, Day, H):-
 append_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line, Routes_So_Far, Routes):-
     append(Routes_So_Far,[route(Conn_Line, Conn_Source, Conn_Destination, Conn_Duration )], Routes ).
 
+proper_connection(Station_A, Station_B, Duration, Line):-
+    (connection(Station_A, Station_B, Duration, Line); connection(Station_B, Station_A, Duration, Line)),
+    \+ unidirectional(Line).
+        
+proper_connection(Station_A, Station_B, Duration, Line):-
+    (connection(Station_A, Station_B, Duration, Line)),
+    unidirectional(Line).
