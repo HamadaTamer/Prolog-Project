@@ -2221,3 +2221,5 @@ scheduled_slot(12, sat, 5, industrial_robots, mctr_6).
 scheduled_slot(12, sat, 2, fluid_mechanics_and_thermodynamics, mctr_6).
 scheduled_slot(12, sat, 3, fluid_mechanics_and_thermodynamics, mctr_6).
 scheduled_slot(12, sat, 4, fluid_mechanics_and_thermodynamics, mctr_6).
+
+
