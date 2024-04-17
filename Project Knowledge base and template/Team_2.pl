@@ -31,22 +31,27 @@ earliest_slot(Group, Week, Day, H):-
 %code for append connection:
 delete_last(List, Result) :-
     append(Result, [_], List).
-append_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line, Routes_So_Far, Routes):-
-    last(Routes_So_Far,route(Conn_Line1, Conn_Source1, Conn_Destination1, Conn_Duration1 ) ),
-    Conn_Source=Conn_Destination1,
-    Conn_Line =Conn_Line1,
-    D is Conn_Duration +Conn_Duration1,
-    X =Conn_Source1,
-    delete_last(Routes_So_Far, R),
-    append(R,[route(Conn_Line, X, Conn_Destination, D )], Routes ).
 
-append_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line, Routes_So_Far, Routes):-
-    proper_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line),
-    last(Routes_So_Far,route(Conn_Line1, Conn_Source1, Conn_Destination1, Conn_Duration1 ) ),
-    (Conn_Source\=Conn_Destination1;
-    Conn_Line \=Conn_Line1),
-    append(Routes_So_Far,[route(Conn_Line, Conn_Source, Conn_Destination, Conn_Duration )], Routes ).
-    day_slots(Group, Week, Day , [H|_]).
+    append_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line, Routes_So_Far, Routes):-
+       last(Routes_So_Far,route(Conn_Line1, Conn_Source1, Conn_Destination1, Conn_Duration1 ) ),
+        Conn_Source=Conn_Destination1,
+        Conn_Line =Conn_Line1,
+        D is Conn_Duration +Conn_Duration1,
+        X =Conn_Source1,
+        proper_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line),
+        delete_last(Routes_So_Far, R),
+        append(R,[route(Conn_Line, X, Conn_Destination, D )], Routes ).
+
+
+
+
+
+        append_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line, Routes_So_Far, Routes):-
+            last(Routes_So_Far,route(Conn_Line1, Conn_Source1, Conn_Destination1, Conn_Duration1 ) ),
+            (Conn_Source\=Conn_Destination1;
+            Conn_Line \=Conn_Line1),
+            proper_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line),
+            append(Routes_So_Far,[route(Conn_Line, Conn_Source, Conn_Destination, Conn_Duration )], Routes ).
 
 %code for proper_connection:
 proper_connection(Station_A, Station_B, Duration, Line):-
