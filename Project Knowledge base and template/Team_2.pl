@@ -45,6 +45,7 @@ append_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line, Route
     (Conn_Source\=Conn_Destination1;
     Conn_Line \=Conn_Line1),
     append(Routes_So_Far,[route(Conn_Line, Conn_Source, Conn_Destination, Conn_Duration )], Routes ).
+    day_slots(Group, Week, Day , [H|_]).
 
 %code for proper_connection:
 proper_connection(Station_A, Station_B, Duration, Line):-
