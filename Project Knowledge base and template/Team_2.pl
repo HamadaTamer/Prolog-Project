@@ -19,3 +19,6 @@ day_slots(Group, Week, Day, S):-
 
 earliest_slot(Group, Week, Day, H):-
     day_slots(Group, Week, Day , [H|T]).
+
+append_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line, Routes_So_Far, Routes):-
+    append(Routes_So_Far,[route(Conn_Line, Conn_Source, Conn_Destination, Conn_Duration )], Routes ).
