@@ -14,7 +14,7 @@ group_days(Group, List):-
 
 
 
-%code for earliest slot:
+%code for day slot:
 day_slots_helper(Group, Week, Day, Slots):-
     scheduled_slot(Week, Day, Slots, _, Group).
     
