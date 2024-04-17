@@ -25,11 +25,12 @@ day_slots(Group, Week, Day, S):-
 earliest_slot(Group, Week, Day, H):-
     day_slots(Group, Week, Day , [H|T]).
 
-    delete_last(List, Result) :-
-        append(Result, [_], List).
+    
 
 
 %code for append connection:
+delete_last(List, Result) :-
+    append(Result, [_], List).
 append_connection(Conn_Source, Conn_Destination, Conn_Duration, Conn_Line, Routes_So_Far, Routes):-
     last(Routes_So_Far,route(Conn_Line1, Conn_Source1, Conn_Destination1, Conn_Duration1 ) ),
     Conn_Source=Conn_Destination1,
