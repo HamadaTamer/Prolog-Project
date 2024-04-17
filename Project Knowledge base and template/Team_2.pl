@@ -10,11 +10,11 @@ group_days(Group, List):-
     setof(day_timing(Week,Day), group_helper(Group,day_timing(Week, Day)), List).
 
 
-day_slots1(Group, Week, Day, Slots):-
+day_slots_helper(Group, Week, Day, Slots):-
     scheduled_slot(Week, Day, Slots, _, Group).
     
 day_slots(Group, Week, Day, S):-
-    setof(Slots ,day_slots1(Group, Week, Day, Slots),S).
+    setof(Slots ,day_slots_helper(Group, Week, Day, Slots),S).
 
 
 earliest_slot(Group, Week, Day, H):-
